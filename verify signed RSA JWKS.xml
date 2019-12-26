@@ -1,0 +1,14 @@
+<VerifyJWT name='##'>
+  <Algorithm>${1:$$(yas-choose-value '(\"RS256\" \"PS256\" ))}</Algorithm>
+  <Source>inbound.jwt</Source>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <PublicKey>
+    <JWKS ref='jwksResponse.content'/>
+  </PublicKey>
+  <Subject>${2:DinoChiesa}</Subject>
+  <Issuer>${3:accounts.google.com}</Issuer>
+  <Audience>${4:urn://www.apigee.com/the-google-kirkland-office}</Audience>
+  <AdditionalClaims>
+    <Claim name='scope'>urn://www.apigee.com/apis/forever</Claim>
+  </AdditionalClaims>
+</VerifyJWT>

@@ -1,0 +1,47 @@
+<VerifyJWT name='##'>
+  <Algorithm>${1:$$(yas-choose-value '(\"RS256\" \"PS256\" ))}</Algorithm>
+  <Source>inbound.jwt</Source>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <PublicKey>
+    <Value>
+      -----BEGIN PUBLIC KEY-----
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq/c4uCIU3UVFy7ezonkJ
+      WVp2HkyZutia5Vg3T6lnWMySLeux34pWEiQdnNomWJvxY1wUc3PDUD8m4dF86Lvd
+      Vr9dXisYtWpoaxy+nLGWmkSXv3pv77OfpEmaESbDEN4NlrQQsqnHH21fr8IQGp1e
+      IetYOcUkBl97QXETV7fS5gSM2PuqMh7PNKeQot9LAf+0ANLzpCXa7Tx26TXoib2C
+      RG5wD2+JDp3wlQtDTmNaHDgz7GDB1HsLYLY+JEFEi0hPY0zzUwxoH8UTlQmHHHWy
+      5ewmAAQZ3yasIG0csDM38nKSHcZJMorg3tcJzO/7RS+a/sU8oEJWLkUcGawM33cc
+      CQIDAQAB
+      -----END PUBLIC KEY-----
+    </Value>
+  </PublicKey>
+  <!-- <Subject>subject-here</Subject> -->
+  <Issuer>urn://DinoChiesa</Issuer>
+  <Audience>urn://www.apigee.com/apitechforum/token</Audience>
+  <AdditionalClaims>
+    <Claim name='scope'>urn://www.apigee.com/apitechforum.readonly</Claim>
+  </AdditionalClaims>
+
+  <!--
+       upon failure, goes into fault state, and sets these context variables:
+       fault.name = ExpiredJwt
+                    InvalidJwt - not-before-time or issued-at time is invalid, or signature failed
+                    InvalidJwtAlgorithm
+                    JwtIssuerMismatch
+                    JwtAudienceMismatch
+                    JwtSubjectMismatch
+                    JwtClaimNotPresent
+       jwt.##.algorithm
+
+       and if the algorithm is valid, sets these variables:
+
+       jwt.##.decoded.claim.iss
+       jwt.##.decoded.claim.aud
+       jwt.##.decoded.claim.exp
+       jwt.##.expiresIn
+       jwt.##.expired
+       jwt.##.valid
+       jwt.##.decoded.claim.custom-claim-name
+  -->
+
+</VerifyJWT>
